@@ -32,9 +32,9 @@ BEGIN
         RAISE EXCEPTION 'Цена блюда должна быть неотрицательной';
     END IF;
 
-    IF p_rating IS NOT NULL AND
-       (p_rating < 0 OR p_rating > 5) THEN
-        RAISE EXCEPTION 'Рейтинг должен быть от 0 до 5';
+    -- Rating is calculated exclusively from reviews (FOOD-105, BR-9.6).
+    IF p_rating IS NOT NULL THEN
+        RAISE EXCEPTION 'Рейтинг нового блюда должен быть NULL до появления отзывов';
     END IF;
 
     INSERT INTO rigun_food.product (
