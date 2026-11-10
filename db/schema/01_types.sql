@@ -1,3 +1,5 @@
+CREATE SCHEMA IF NOT EXISTS rigun_food;
+
 -- FOOD-101. Типы данных FoodExpress
 
 CREATE TYPE rigun_food.restaurant_status AS ENUM (

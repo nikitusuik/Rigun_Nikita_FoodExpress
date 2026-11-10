@@ -108,7 +108,7 @@ BEGIN
         INSERT INTO rigun_food.address
             (address_id, street, house_number, apartment_office)
         VALUES (
-            v_address, 'Ресторанная ' || i, i::text, NULL
+            v_address, 'Ресторанная ' || i || ' ' || left(v_address::text, 8), i::text, NULL
         );
 
         v_id := exts.uuid_generate_v4();
@@ -141,7 +141,7 @@ BEGIN
                 (address_id, street, house_number, apartment_office)
             VALUES (
                 v_address,
-                'Клиентская ' || i,
+                'Клиентская ' || i || ' ' || left(v_address::text, 8),
                 j::text,
                 i::text
             );
@@ -248,9 +248,7 @@ BEGIN
             v_price + v_commission,
             exts.uuid_generate_v4()::text,
             v_time,
-            CASE WHEN v_status = v_order_states[4]
-                 THEN v_payment_states[1]
-                 ELSE v_payment_states[2] END
+            v_payment_states[1]
         );
 
         v_entity_type := v_review_types[1 + ((i - 1) % 3)];

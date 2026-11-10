@@ -38,3 +38,16 @@ SQL-скрипты находятся в `db/schema/`.
 Для проверки используются процедуры `insert_test_data`,
 `erase_test_data`, `add_product`, `courier_salary`,
 функция `get_statistic` и представление `how_much_money`.
+
+### Восстановление на другом сервере
+
+В целевой базе предварительно должны существовать схема `exts` и расширение `uuid-ossp`.
+Не требуется создавать роль `rigun` из исходного сервера. Запуск восстановления:
+
+```bash
+pg_restore --no-owner --no-acl --exit-on-error -d <имя_базы> db/foodexpress_rigun.backup
+```
+
+Для роли `inspector` администратор целевой базы применяет `db/schema/grants.sql`.
+Для развёртывания по SQL на чистой базе сначала подготовить `exts`, затем выполнить
+скрипты `01_types.sql`–`14_audit_fixes.sql` в числовом порядке (кроме grants.sql).
