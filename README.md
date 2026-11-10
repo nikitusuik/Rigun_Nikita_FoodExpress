@@ -18,3 +18,23 @@
 Репозиторий зеркалируется на две платформы. Форкай ту, где тебе удобнее:
 - GitHub: [`<ссылка_на_github>`](https://github.com/NKhashchanov/total_designing_db_2026)
 - GitVerse: [`<ссылка_на_gitverse>`](https://gitverse.ru/nkhashchanov/total_designing_db_2026)
+## Реализация FoodExpress — Никита Ригун
+
+СУБД: PostgreSQL 15.
+Рабочая схема: `rigun_food`.
+
+SQL-скрипты находятся в `db/schema/`.
+
+Резервная копия: `db/foodexpress_rigun.backup`.
+
+Документация:
+- `db/constraints.md` — ограничения базы данных.
+- `db/tests.md` — результаты тестирования.
+
+Для восстановления архива необходимо заранее обеспечить
+доступность `exts.uuid_generate_v4()` (расширение uuid-ossp
+в схеме exts).
+
+Для проверки используются процедуры `insert_test_data`,
+`erase_test_data`, `add_product`, `courier_salary`,
+функция `get_statistic` и представление `how_much_money`.

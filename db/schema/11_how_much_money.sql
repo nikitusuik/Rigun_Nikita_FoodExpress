@@ -86,5 +86,8 @@ SELECT
     prev_commission,
     (commission - prev_commission)::numeric AS commission_diff,
     courier_pay,
-    (commission - courier_pay)::numeric AS net_profit
+    CASE
+        WHEN sum_with_commission = 0 THEN 0::numeric
+        ELSE (commission - courier_pay)::numeric
+    END AS net_profit
 FROM with_previous;

@@ -14,7 +14,6 @@ BEGIN
 END;
 $$;
 
-GRANT CONNECT ON DATABASE foodexpress_rigun TO inspector;
 
 GRANT ALL PRIVILEGES ON SCHEMA rigun_food TO inspector;
 GRANT USAGE ON SCHEMA exts TO inspector;

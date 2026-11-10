@@ -9,7 +9,7 @@ RETURNS TABLE (
     best_user varchar
 )
 LANGUAGE sql
-STABLE
+VOLATILE
 AS $$
 WITH delivered AS (
     SELECT
